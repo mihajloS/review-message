@@ -75,11 +75,16 @@ are currently limited to Business, Enterprise, Healthcare and Edu plans.
 
 ## Usage
 
-Paste your draft and ask. The thread above it is optional but makes the fact
-and tone checks real:
+**This skill never fires on its own.** You invoke it deliberately or it stays
+out of the way - `/review-message` in Claude Code, `$review-message` in Codex
+and ChatGPT, `@review-message` in Cursor. A skill that jumps in every time a
+draft appears in the conversation is the thing it was built to avoid.
+
+The thread above your draft is optional, but it is what makes the fact and tone
+checks real:
 
 ```
-review this before I send it
+/review-message
 
 --- thread ---
 Ana: can you get the migration notes over before the review?
@@ -98,6 +103,20 @@ than lecturing you about it.
 A single [Agent Skills](https://agentskills.io) `SKILL.md` - the open standard
 originally developed by Anthropic and now maintained as a vendor-neutral spec,
 read by Claude Code, ChatGPT, Codex, Cursor, Copilot and others.
+
+Explicit-only invocation has to be declared twice, because no single field
+covers both families:
+
+- `disable-model-invocation: true` in `SKILL.md` - Claude Code, Cursor, Pi.
+  It is not one of the six fields in the neutral spec, so `skills-ref validate`
+  reports it as unexpected. Nothing in the install path enforces that, and
+  runtimes that do not know the field ignore it.
+- `policy.allow_implicit_invocation: false` in `agents/openai.yaml` - Codex and
+  ChatGPT, which do not read the frontmatter field
+  ([openai/codex#10585](https://github.com/openai/codex/issues/10585)).
+
+The description carries the same instruction in plain language, which is the
+only brake left on runtimes that honour neither.
 
 ## License
 

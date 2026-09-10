@@ -1,7 +1,8 @@
 ---
 name: review-message
-description: Reviews a draft message the user has written but not yet sent (Slack, email, PR description, comment) and returns at most three bulleted objections with reasons - never a rewrite. Use when the user shares a draft and asks if it is good, if anything should change, or pastes a thread whose last message is their own unsent reply.
+description: Reviews a draft message the user has written but not yet sent (Slack, email, PR description, comment) and returns a verdict plus at most three bulleted objections with reasons - never a rewrite. EXPLICIT INVOCATION ONLY - use this only when the user names it or directly asks for a draft to be reviewed. Do not trigger merely because a message, thread, or unsent draft appears in the conversation.
 license: MIT
+disable-model-invocation: true
 ---
 
 # review-message

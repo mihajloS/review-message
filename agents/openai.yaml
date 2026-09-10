@@ -1,0 +1,8 @@
+interface:
+  display_name: Review message
+
+policy:
+  # Codex and ChatGPT ignore SKILL.md's `disable-model-invocation`, so the
+  # explicit-only rule has to be repeated here. Without this, the skill fires
+  # on any draft-shaped text in the conversation.
+  allow_implicit_invocation: false
