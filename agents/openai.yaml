@@ -1,8 +1,13 @@
+# Product-specific config read by the harness, not the agent.
+# Schema: skill-creator/references/openai_yaml.md
 interface:
-  display_name: Review message
+  display_name: "Review message"
+  short_description: "Judges your draft instead of rewriting it"
+  default_prompt: "Use $review-message to judge the draft below before I send it."
 
 policy:
-  # Codex and ChatGPT ignore SKILL.md's `disable-model-invocation`, so the
-  # explicit-only rule has to be repeated here. Without this, the skill fires
-  # on any draft-shaped text in the conversation.
+  # Codex and the ChatGPT app ignore SKILL.md's `disable-model-invocation`, so
+  # the explicit-only rule has to be repeated here. Without it the skill is
+  # injected into the model context and fires on any draft-shaped text.
+  # OpenAI's own bundled `review-agent` skill uses this same setting.
   allow_implicit_invocation: false
