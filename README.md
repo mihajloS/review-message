@@ -90,6 +90,8 @@ already covered by the command above.
    your draft.
 
 
+https://github.com/user-attachments/assets/bdab060e-7ee4-4ec2-b74d-e97db2723826
+
 
 ### ChatGPT
 
