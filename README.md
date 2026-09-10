@@ -89,11 +89,7 @@ already covered by the command above.
 5. Start a **new chat** and invoke it with `/review-message`, followed by
    your draft.
 
-Uploading `SKILL.md` by itself is enough here because this skill is one file.
-A skill that ships `scripts/`, `references/` or `assets/` has to go up as a
-folder or a zip, or those files are silently left behind.
 
-<!-- video goes here -->
 
 ### ChatGPT
 
