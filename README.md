@@ -53,24 +53,53 @@ not have the context to make it.
 
 ## Install
 
-**Any supported agent** ([`npx skills`](https://github.com/vercel-labs/skills)
-covers Claude Code, Cursor, Codex, Copilot and ~75 others):
+Most agents read skills straight off the filesystem, and one command covers
+all of them - [`npx skills`](https://github.com/vercel-labs/skills) supports
+Claude Code, Cursor, the ChatGPT desktop app, Codex, Copilot and ~75 others:
 
 ```bash
 npx skills add mihajloS/review-message
 ```
 
-**Claude Code**, manually:
+Add `-g` to install it for every project instead of the current one, and run
+`npx skills update` later to pull a newer version.
 
-```bash
-git clone https://github.com/mihajloS/review-message ~/.claude/skills/review-message
-```
+Manual paths, if you would rather clone: `~/.claude/skills/review-message`
+for Claude Code, `.agents/skills/review-message` in a project or
+`~/.agents/skills/review-message` globally for Cursor, Codex and VS Code.
 
-**Cursor / Codex / VS Code**, manually - clone into `.agents/skills/review-message`
-in your project, or `~/.agents/skills/review-message` for all projects.
+### Claude Desktop
 
-**ChatGPT** - there is no install-from-git in the ChatGPT app. Download this
-repo, zip it, and upload it under Skills → Create → Upload. Skills in ChatGPT
+Chat in Claude Desktop has no filesystem access, so the skill has to be
+uploaded to your account. Claude Code inside the same app is separate and is
+already covered by the command above.
+
+1. Install the skill, which is also what puts the file on disk for you to
+   pick in step 4:
+
+   ```bash
+   npx skills add mihajloS/review-message
+   ```
+
+2. Open Claude Desktop → **Settings** → **Skills**, under *Customize* in the
+   sidebar - below Capabilities and Claude Code, not inside them.
+3. Click **Add** → **Upload skill**.
+4. Select `SKILL.md` from `~/.agents/skills/review-message`. Press `⌘⇧.` in
+   the file dialog to reveal the hidden `.agents` folder.
+5. Start a **new chat** and invoke it with `/review-message`, followed by
+   your draft.
+
+Uploading `SKILL.md` by itself is enough here because this skill is one file.
+A skill that ships `scripts/`, `references/` or `assets/` has to go up as a
+folder or a zip, or those files are silently left behind.
+
+<!-- video goes here -->
+
+### ChatGPT
+
+The desktop app reads `~/.agents/skills`, so the command above already covers
+it - nothing to upload. Only chatgpt.com in a browser needs a manual upload:
+download this repo, zip it, then Skills → Create → Upload. Skills in ChatGPT
 are currently limited to Business, Enterprise, Healthcare and Edu plans.
 
 ## Usage
